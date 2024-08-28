@@ -30,7 +30,15 @@ public class ProjectService {
     }
 
     public Project updateProjectById(int id, Project project) {
-        return projectRepo.save(project);
+        Project updatedProject = projectRepo.findById(id).orElseThrow();
+        updatedProject.setName(project.getName());
+        updatedProject.setDescription(project.getDescription());
+        updatedProject.setBudget(project.getBudget());
+        updatedProject.setStartDate(project.getStartDate());
+        updatedProject.setEndDate(project.getEndDate());
+        updatedProject.setHeurs(project.getHeurs());
+
+        return projectRepo.save(updatedProject);
     }
 
 }
