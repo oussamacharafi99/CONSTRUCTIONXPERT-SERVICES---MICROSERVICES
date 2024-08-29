@@ -1,6 +1,8 @@
 package org.example.taskservice.service;
 
+import org.example.taskservice.classe.Project;
 import org.example.taskservice.model.Task;
+import org.example.taskservice.openfeign.ProjetRest;
 import org.example.taskservice.repository.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ public class TaskService {
 
     @Autowired
     private TaskRepo taskRepo;
+    @Autowired
+    private ProjetRest projetRest;
 
     public Task save(Task task) {
         return taskRepo.save(task);
@@ -30,11 +34,19 @@ public class TaskService {
     }
 
     public Task findById(Integer id) {
-        return taskRepo.findById(id).orElseThrow();
+        Task task= taskRepo.findById(id).orElseThrow();
+        Project project=projetRest.getById(task.getProject_id());
+        task.setProject(project);
+        return task;
     }
 
     public List<Task> findAll() {
-        return taskRepo.findAll();
+        List<Task> taskList= taskRepo.findAll();
+        for (Task task:taskList){
+          Project project=projetRest.getById(task.getProject_id());
+          task.setProject(project);
+        }
+        return taskList;
     }
 
     public void deleteById(Integer id) {

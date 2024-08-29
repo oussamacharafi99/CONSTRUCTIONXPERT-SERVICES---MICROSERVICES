@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.taskservice.classe.Project;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -43,5 +44,8 @@ public class Task {
 
     @Column(name = "description")
     private String description;
+
+    @Transient
+    private Project project;
 
 }

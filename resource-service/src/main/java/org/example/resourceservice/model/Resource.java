@@ -2,7 +2,9 @@ package org.example.resourceservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.resourceservice.classe.Task;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.time.LocalDate;
 
@@ -29,5 +31,8 @@ public class Resource {
     @Column(name = "Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
+    @Transient
+    private Task task;
 
 }
