@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient("TASK-SERVICE")
-@RequestMapping("/construction/task")
 public interface TaskRest {
 
     @GetMapping("/get+id/{id}")

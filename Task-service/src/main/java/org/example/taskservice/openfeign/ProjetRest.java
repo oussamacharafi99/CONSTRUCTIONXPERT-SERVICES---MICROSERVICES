@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient("PROJECT-SERVICE")
-@RequestMapping("/construction/project")
 public interface ProjetRest {
 
     @GetMapping("/get+id/{id}")
