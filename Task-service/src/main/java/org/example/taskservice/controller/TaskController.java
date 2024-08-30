@@ -14,7 +14,7 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("save")
-    public String saveTask(Task task) {
+    public String saveTask(@RequestBody Task task) {
         taskService.save(task);
         return "The Task has been saved";
     }
